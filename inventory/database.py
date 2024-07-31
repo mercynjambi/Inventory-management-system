@@ -18,4 +18,4 @@ def init_db(): # ensure db schema is setup by creating the necessary tables base
     import inventory.models #import models
     Base.metadata.create_all(bind=engine) # create tables
 
-# init_db()
+
