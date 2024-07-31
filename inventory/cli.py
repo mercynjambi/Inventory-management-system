@@ -1,6 +1,6 @@
-# inventory/cli.py
 
-import click
+
+import click  
 from inventory.services import add_category, get_categories, add_item, get_items, delete_item
 
 @click.group()
