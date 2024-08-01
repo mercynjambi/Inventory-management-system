@@ -7,7 +7,7 @@ class Category(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String, unique=True, nullable=False)
-    items = relationship('item', back_populates='category')
+    items = relationship('Item', back_populates='category')
 
 class Item(Base):
     __tablename__ = 'items'
