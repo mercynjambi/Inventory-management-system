@@ -1,5 +1,5 @@
 import click
-from inventory.services import add_category, get_categories, add_item, get_items, delete_item
+from inventory.services import add_category, get_categories, add_item, get_items, delete_item, find_item_by_id, find_item_by_name, find_category_by_id, find_category_by_name
 from sqlalchemy.exc import SQLAlchemyError
 
 @click.group()
@@ -38,7 +38,7 @@ def viewcategories():
 @click.argument('name')
 @click.argument('description')
 @click.argument('quantity', type=int)
-@click.argument('price', type=float)  # Change to float for price
+@click.argument('price', type=float)
 @click.argument('category_id', type=int)
 def additem(name, description, quantity, price, category_id):
     """Add a new item."""
@@ -87,11 +87,67 @@ def deleteitem(item_id):
     except SQLAlchemyError as e:
         click.echo(f"Error: {e}")
 
+@click.command()
+@click.argument('item_id', type=int)
+def finditembyid(item_id):
+    """Find an item by ID."""
+    try:
+        item = find_item_by_id(item_id)
+        if item:
+            click.echo(f'{item.id}: {item.name} - {item.description} - {item.quantity} - {item.price} - Category ID: {item.category_id}')
+        else:
+            click.echo(f"No item found with ID {item_id}.")
+    except SQLAlchemyError as e:
+        click.echo(f"Error: {e}")
+
+@click.command()
+@click.argument('name')
+def finditembyname(name):
+    """Find an item by name."""
+    try:
+        item = find_item_by_name(name)
+        if item:
+            click.echo(f'{item.id}: {item.name} - {item.description} - {item.quantity} - {item.price} - Category ID: {item.category_id}')
+        else:
+            click.echo(f"No item found with name {name}.")
+    except SQLAlchemyError as e:
+        click.echo(f"Error: {e}")
+
+@click.command()
+@click.argument('category_id', type=int)
+def findcategorybyid(category_id):
+    """Find a category by ID."""
+    try:
+        category = find_category_by_id(category_id)
+        if category:
+            click.echo(f'{category.id}: {category.name}')
+        else:
+            click.echo(f"No category found with ID {category_id}.")
+    except SQLAlchemyError as e:
+        click.echo(f"Error: {e}")
+
+@click.command()
+@click.argument('name')
+def findcategorybyname(name):
+    """Find a category by name."""
+    try:
+        category = find_category_by_name(name)
+        if category:
+            click.echo(f'{category.id}: {category.name}')
+        else:
+            click.echo(f"No category found with name {name}.")
+    except SQLAlchemyError as e:
+        click.echo(f"Error: {e}")
+
 cli.add_command(addcategory)
 cli.add_command(viewcategories)
 cli.add_command(additem)
 cli.add_command(viewitems)
 cli.add_command(deleteitem)
+cli.add_command(finditembyid)
+cli.add_command(finditembyname)
+cli.add_command(findcategorybyid)
+cli.add_command(findcategorybyname)
 
 if __name__ == '__main__':
     cli()
