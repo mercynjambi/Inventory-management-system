@@ -2,9 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-
-DATABASE_URL = ('sqlite:///./inventory.db')
-
+DATABASE_URL = 'sqlite:///./inventory.db'
 
 engine = create_engine(DATABASE_URL)
 
@@ -16,7 +14,8 @@ Base = declarative_base()
 
 def init_db(): 
     print("Initializing database...")
-    import inventory.models 
+ 
+    from inventory.models import Category, Item, Supplier, Customer, Order
     Base.metadata.create_all(bind=engine) 
 
 
