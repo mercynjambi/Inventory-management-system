@@ -8,13 +8,14 @@ DATABASE_URL = ('sqlite:///./inventory.db')
 
 engine = create_engine(DATABASE_URL)
 
-# Session Local class
+
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
 Base = declarative_base()
 
 def init_db(): 
+    print("Initializing database...")
     import inventory.models 
     Base.metadata.create_all(bind=engine) 
 
