@@ -98,5 +98,5 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 # **Contact**
 For questions or suggestions, please contact:
-    ***njmabim695@gmail.com***
+    ***njambi695@gmail.com***
     
