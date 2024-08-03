@@ -303,5 +303,30 @@ def findorderbyid(order_id):
     except SQLAlchemyError as e:
         click.echo(f"Error: {e}")
 
+cli.add_command(addcategory)
+cli.add_command(viewcategories)
+cli.add_command(findcategorybyid)
+cli.add_command(findcategorybyname)
+cli.add_command(additem)
+cli.add_command(viewitems)
+cli.add_command(deleteitem)
+cli.add_command(finditembyid)
+cli.add_command(finditembyname)
+cli.add_command(addsupplier)
+cli.add_command(viewsuppliers)
+cli.add_command(findsupplierbyid)
+cli.add_command(findsupplierbyname)
+cli.add_command(addcustomer)
+cli.add_command(viewcustomers)
+cli.add_command(findcustomerbyid)
+cli.add_command(findcustomerbyemail)
+cli.add_command(addorder)
+cli.add_command(vieworders)
+cli.add_command(findorderbyid)
+
+if __name__ == '__main__':
+    cli()
+       
+
         
        

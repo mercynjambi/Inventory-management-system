@@ -18,9 +18,9 @@ def get_categories():
     session.close()
     return categories  
 
-def add_item(name, description, quantity, price, category_id):
+def add_item(name, description, quantity, price, category_id, supplier_id=None):
     session = get_session()
-    item = Item(name=name, description=description, quantity=quantity, price=price, category_id=category_id)
+    item = Item(name=name, description=description, quantity=quantity, price=price, category_id=category_id, supplier_id=supplier_id)
     session.add(item)
     session.commit()
     session.close()

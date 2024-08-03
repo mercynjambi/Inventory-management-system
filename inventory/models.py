@@ -28,8 +28,8 @@ class Item(Base):
 class Supplier(Base):
     __tablename__ = 'suppliers'
 
-    id = Column(Integer, primary_key=True)
-    name = Column(String, unique=True, nullable=False)
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, unique=True, nullable=False, index=True)
     contact_info = Column(String)
     items = relationship('Item', back_populates='supplier')
 
